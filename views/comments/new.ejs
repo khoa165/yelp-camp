@@ -1,0 +1,17 @@
+<%- include("../partials/header") %>
+
+<div class="container my-3">
+  <a href="/campgrounds/<%= camp._id %>"><i class="fas fa-long-arrow-alt-left"></i> Back to campgrounds</a>
+  <div class="my-2 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+    <h3 class="text-center font-italic">Add new comment to <%= camp.name %>!</h3>
+    <form action="/campgrounds/<%= camp._id %>/comments" method="POST" class="my-4">
+      <div class="form-group">
+        <label for="commentText">Comment</label>
+        <input type="text" class="form-control" id="commentText" placeholder="Please enter your comment." name="comment[text]">
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Submit</button>
+    </form>
+  </div>
+</div>
+
+<%- include("../partials/footer") %>
