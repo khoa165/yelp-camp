@@ -10,12 +10,14 @@ Campground = require("./models/campground"),
 Comment = require("./models/comment"),
 User = require("./models/user"),
 seedDB = require("./seeds");
+require("dotenv").config();
 
 var campgroundRoutes = require("./routes/campgrounds"),
 commentRoutes = require("./routes/comments"),
 indexRoutes = require("./routes/index");
 
-mongoose.connect("mongodb://localhost/yelp_camp");
+url = process.env.MONGODB_URI || "mongodb://localhost/yelp_camp"
+mongoose.connect(url);
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
