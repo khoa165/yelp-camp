@@ -1,4 +1,5 @@
 // Require dependencies.
+require('dotenv').config();
 var express = require('express'),
   app = express(),
   bodyParser = require('body-parser'),
@@ -9,7 +10,6 @@ var express = require('express'),
   methodOverride = require('method-override'),
   User = require('./models/user'),
   seedDB = require('./seeds');
-require('dotenv').config();
 
 // Require routes.
 var campgroundRoutes = require('./routes/campgrounds'),

@@ -1,49 +1,82 @@
 <%- include("../partials/header") %>
 
-<div class="container my-3">
-  <a href="/campgrounds"><i class="fas fa-long-arrow-alt-left"></i> Back to campgrounds</a>
-  <div class="row mt-3">
-    <div class="col-md-3">
-      <div class="list-group">
-        <li class="list-group-item active">Info 1</li>
-        <li class="list-group-item">Info 2</li>
-        <li class="list-group-item">Info 3</li>
+<div class="container">
+  <a class="return-link" href="/campgrounds"><i class="fas fa-long-arrow-alt-left"></i> Back to campgrounds</a>
+  <div class="row mt-4">
+    <div class="col-lg-4">
+      <div class="list-group mb-4">
+        <li class="list-group-item active"><%= camp.name %></li>
+        <li class="list-group-item"><%= camp.location %></li>
       </div>
+      <div id="map"></div>
     </div>
-    <div class="col-md-9">
-      <div class="thumbnail">
-        <img src="<%= camp.image %>" class="img-fluid">
-        <div class="caption">
-          <h4 class="float-right">$<%= camp.price %>/night</h4>
-          <h4><a href="#"><%= camp.name %></a></h4>
-          <p><%= camp.description %></p>
-          <p><em>Submitted by <%= camp.author.username %></em></p>
-          <% if (currentUser && camp.author.id.equals(currentUser._id)) { %>
-            <a class="btn btn-warning btn-sm" href="/campgrounds/<%= camp._id %>/edit">Edit</a>
-            <form class="delete-form" action="/campgrounds/<%= camp._id %>?_method=DELETE" method="POST">
-              <button class="btn btn-danger btn-sm">Delete</button>
-            </form>
-          <% } %>
+    <div class="col-lg-8 mt-4 mt-lg-0">
+      <div class="campground-card">
+        <img src="<%= camp.image %>" class="img-fluid img-thumbnail">
+        <div class="info mt-4">
+          <div class="info-header p-3">
+            <p class="float-right m-0">$<%= camp.price %>/night</p>
+            <h4 class="m-0"><%= camp.name %></h4>
+          </div>
+          <div class="info-body p-3">
+            <p class="font-italic m-0"><%= camp.description %></p>
+            <footer class="blockquote-footer text-right">Submitted by <cite><%= camp.author.username %></cite></footer>
+            <% if (currentUser && camp.author.id.equals(currentUser._id)) { %>
+              <a class="btn btn-info btn-sm" href="/campgrounds/<%= camp._id %>/edit">Edit</a>
+              <form class="delete-form" action="/campgrounds/<%= camp._id %>?_method=DELETE" method="POST">
+                <button class="btn btn-danger btn-sm">Delete</button>
+              </form>
+            <% } %>
+          </div>
         </div>
       </div>
-      <div class="jumbotron py-4 px-5">
-        <div class="text-right">
-          <a class="btn btn-primary" href="/campgrounds/<%= camp._id %>/comments/new">Add new comment</a>
+      <div class="comments-board-card my-3 pb-3">
+        <div class="comments-header mb-3 p-3">
+          <h6 class="m-0">Reviews</h6>
+          <!-- <a class="btn btn-primary" href="/campgrounds/<%= camp._id %>/comments/new"><i class="fas fa-plus"></i></a> -->
+          <a class="btn btn-primary" data-toggle="collapse" href="#add-comment-form" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <i class="fas fa-plus"></i>
+          </a>
         </div>
-        <hr>
-        <% camp.comments.forEach(function(comment) { %>
-          <div class="row">
-            <div class="col-md-12 my-0">
-              <strong><%= comment.author.username %></strong>
-              <span class="float-right">10 days ago</span>
-              <p><%= comment.text %></p>
-              <% if (currentUser && comment.author.id.equals(currentUser._id)) { %>
-                <a href="/campgrounds/<%= camp._id %>/comments/<%= comment._id %>/edit" class="btn btn-warning btn-sm">Edit</a>
-                <form class="delete-form" action="/campgrounds/<%= camp._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
-                  <button class="btn btn-danger btn-sm">Delete</button>
+        <div class="collapse mb-3 px-3" id="add-comment-form">
+          <div class="px-3 form-container">
+            <div class="row">
+              <div class="col-lg-8 offset-lg-2">
+                <form action="/campgrounds/<%= camp._id %>/comments" method="POST" class="my-4">
+                  <div class="form-group">
+                    <label for="commentText">Add comment</label>
+                    <input type="text" class="form-control" id="commentText" placeholder="Please enter your comment." name="comment[text]">
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-block">Submit</button>
                 </form>
-              <% } %>
-              <hr>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% camp.comments.forEach((comment, index) => { %>
+          <% if (index != 0) { %>
+            <div class="px-3 m-0">
+              <hr class="my-3">
+            </div>
+          <% } %>
+          <div class="comment-card px-3">
+            <div class="row">
+              <div class="col-2 text-center">
+                <img class="avatar" src="https://images.unsplash.com/photo-1560114928-40f1f1eb26a0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" alt="User avatar">
+              </div>
+              <div class="col-10">
+                <div class="comment-card-header">
+                  <p class="m-0 font-weight-bold"><%= comment.author.username %></p>
+                  <p class="m-0">2 days ago</p>
+                </div>
+                <p class="mb-2"><%= comment.text %></p>
+                <% if (currentUser && comment.author.id.equals(currentUser._id)) { %>
+                  <a href="/campgrounds/<%= camp._id %>/comments/<%= comment._id %>/edit" class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
+                  <form class="delete-form" action="/campgrounds/<%= camp._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                    <button class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
+                  </form>
+                <% } %>
+              </div>
             </div>
           </div>
         <% }); %>
@@ -51,5 +84,34 @@
     </div>
   </div>
 </div>
+
+<script>
+  function initMap() {
+    var lat = <%= camp.lat %>;
+    var lng = <%= camp.lng %>;
+    var center = {lat: lat, lng: lng };
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 8,
+        center: center,
+        scrollwheel: false
+    });
+    var contentString = `
+      <strong><%= camp.name %><br />
+      <%= camp.location %></strong>
+      <p><%= camp.description %></p>
+    `
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+    var marker = new google.maps.Marker({
+        position: center,
+        map: map
+    });
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
+    });
+  }
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_qMU-EMvoPnE1zhsiJw40KiZvpLE3ZAQ&callback=initMap"></script>
 
 <%- include("../partials/footer") %>

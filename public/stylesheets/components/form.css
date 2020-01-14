@@ -22,3 +22,7 @@
 .form-control[readonly] {
   background-color: white;
 }
+
+.delete-form {
+  display: inline;
+}

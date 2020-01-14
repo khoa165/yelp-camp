@@ -1,19 +1,7 @@
-@import url('components/navbar.css');
+@import url('components/avatar.css');
+@import url('components/card.css');
 @import url('components/form.css');
+@import url('components/map.css');
+@import url('components/navbar.css');
+
 @import url('pages/campgrounds.css');
-
-.thumbnail img {
-  width: 100%;
-}
-
-.thumbnail {
-  padding: 0;
-}
-
-.thumbnail .caption {
-  padding: 10px;
-}
-
-.delete-form {
-  display: inline;
-}

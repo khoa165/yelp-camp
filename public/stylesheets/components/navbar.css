@@ -13,12 +13,6 @@
   text-align: right;
 }
 
-.navbar-image {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-}
-
 .dropdown-menu {
   left: auto;
   right: 0;
