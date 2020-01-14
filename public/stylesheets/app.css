@@ -1,3 +1,7 @@
+@import url('components/navbar.css');
+@import url('components/form.css');
+@import url('pages/campgrounds.css');
+
 .thumbnail img {
   width: 100%;
 }
