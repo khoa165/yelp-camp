@@ -1,0 +1,43 @@
+.navbar,
+.navbar-brand {
+  font-size: 20px;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+  padding: 0;
+  margin: auto 10px;
+  color: white;
+}
+
+.nav-item{
+  text-align: right;
+}
+
+.dropdown-menu {
+  left: auto;
+  right: 0;
+  width: 200px;
+}
+
+.dropdown-menu p {
+  padding: 0 20px;
+  margin: 0;
+}
+
+.dropdown-menu hr {
+  margin-bottom: 10px;
+}
+
+.navbar-nav .nav-link.show,
+.navbar-dark .navbar-nav .show > .nav-link {
+  color: black;
+  margin: 0;
+  padding: 3px 20px;
+  margin: 0;
+}
+
+.navbar-nav .nav-link.show,
+.navbar-dark .navbar-nav .show > .nav-link:hover {
+  background: #0366d6;
+  color: white;
+}

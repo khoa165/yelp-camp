@@ -1,25 +1,29 @@
 <%- include("../partials/header") %>
 
 <div class="container my-3">
-  <a href="/campgrounds"><i class="fas fa-long-arrow-alt-left"></i> Back to campgrounds</a>
+  <a class="return-link" href="/campgrounds"><i class="fas fa-long-arrow-alt-left mr-2"></i> Back to campgrounds</a>
   <div class="my-2 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
     <h3 class="text-center font-italic">Add new campground!</h3>
     <form action="/campgrounds" method="POST" class="my-4">
       <div class="form-group">
         <label for="campgroundName">Campground name</label>
-        <input type="text" class="form-control" id="campgroundName" placeholder="Please enter campground's name." name="name">
+        <input type="text" class="form-control" id="campgroundName" placeholder="Please enter campground's name." name="campground[name]">
+      </div>
+      <div class="form-group">
+        <label for="campgroundLocation">Campground location</label>
+        <input type="text" class="form-control" id="campgroundLocation" placeholder="Please enter campground's location." name="campground[location]">
       </div>
       <div class="form-group">
         <label for="campgroundPrice">Campground price</label>
-        <input type="number" class="form-control" id="campgroundPrice" placeholder="Please enter campground's price." name="price" min="0.01" step="0.01">
+        <input type="number" class="form-control" id="campgroundPrice" placeholder="Please enter campground's price." name="campground[price]" min="0.01" step="0.01">
       </div>
       <div class="form-group">
         <label for="campgroundImage">Campground image</label>
-        <input type="text" class="form-control" id="campgroundImage" placeholder="Please provide campground's image." name="image">
+        <input type="text" class="form-control" id="campgroundImage" placeholder="Please provide campground's image." name="campground[image]">
       </div>
       <div class="form-group">
         <label for="campgroundDescription">Campground description</label>
-        <input type="text" class="form-control" id="campgroundDescription" placeholder="Please provide campground's description." name="description">
+        <input type="text" class="form-control" id="campgroundDescription" placeholder="Please provide campground's description." name="campground[description]">
       </div>
       <button type="submit" class="btn btn-primary btn-block">Submit</button>
     </form>

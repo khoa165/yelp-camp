@@ -1,0 +1,35 @@
+.campground-card {
+  padding: 0;
+}
+
+.campground-card img {
+  width: 100%;
+}
+
+.campground-card .info {
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+}
+
+.campground-card .info .info-header {
+  background: #F7F7F7;
+}
+
+.comments-board-card {
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+}
+
+.comments-header {
+  background: #F7F7F7;
+}
+
+.comments-header, .comment-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#add-comment-form .form-container {
+  border-bottom: 1px solid #dee2e6;
+}
