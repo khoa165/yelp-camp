@@ -1,4 +1,4 @@
-# Yelpcamp project
+# Yolo Adventure
 #### Built using Node.js and various NPM packages, including Express.js for web framework, Passport.js for authentication and Mongoose for database.
 Website: https://yoloadventure.herokuapp.com/
 
